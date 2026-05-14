@@ -3,7 +3,7 @@ import useAuthStore from '../store/authStore';
 import toast from 'react-hot-toast';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: 'https://ai-examiner-backend.onrender.com/api',
   timeout: 30000,
 });
 
