@@ -17,18 +17,9 @@ exports.register = async (req, res, next) => {
     const existing = await User.findOne({ email });
     if (existing) return res.status(409).json({ success: false, message: 'Email already registered' });
 
-    // Clean up empty strings for sparse unique fields
-    const cleanRollNumber = rollNumber || undefined;
-    const cleanUsn = usn || undefined;
-    const cleanEmployeeId = employeeId || undefined;
-
     const user = await User.create({
       name, email, password, role,
-      rollNumber: cleanRollNumber, 
-      usn: cleanUsn, 
-      semester, section, department, 
-      employeeId: cleanEmployeeId, 
-      collegeName, phoneNumber,
+      rollNumber, usn, semester, section, department, employeeId, collegeName, phoneNumber,
       isApproved: role === 'student', // students are auto-approved; teachers need admin approval
     });
 
